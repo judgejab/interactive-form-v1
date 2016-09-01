@@ -269,7 +269,7 @@ document.querySelector("button").addEventListener("click", function(e) {
     	activityReminder.innerHTML = "Please select an Activity";
     	activityReminder.style.color = "red";
     	lineBreak.innerHTML = "<br>";
-    } else {
+    } if(counter >= 1){
     	activityReminder.innerHTML = "";
     	lineBreak.innerHTML = "";
     }
@@ -284,7 +284,7 @@ document.querySelector("button").addEventListener("click", function(e) {
     	tshirtReminder.innerHTML = "Don't forget to choose a tshirt";
     	tshirtReminder.style.color = "red";
     	tBreak.innerHTML = "<br>";
-    } else {
+    } else if (tSelection === "js puns" || tSelection === "heart js") {
     	tshirtReminder.innerHTML = "";
     	tBreak.innerHTML = "";
     }
