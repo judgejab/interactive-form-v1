@@ -113,6 +113,12 @@ button:hover {
 	background: #184c62;
 }
 
+ #tshirtReminder{
+  color: red;
+  float: none;
+  padding-bottom: 20px; //whatever measurement you'd like to add
+}
+
 /* ================================= 
   Page Styles
 ==================================== */

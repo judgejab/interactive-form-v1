@@ -50,12 +50,14 @@ document.getElementById("design").addEventListener("change", function(){
 	if(tSelection === "selectTheme") {
 		colorSelector.innerHTML = "";
 		
-	} else if(tSelection === "js puns") {
+	}
+	if(tSelection === "js puns") {
 		// If the user selects "Theme - JS Puns" then the color menu should only display "Cornflower Blue," "Dark Slate Grey," and "Gold."
 		colorSelector.innerHTML = '<label for="color">Color:</label><select id="color"><option value="cornflowerblue">Cornflower Blue</option><option value="darkslategrey">Dark Slate Grey</option><option value="gold">Gold</option></select>';
 		//tColor.innerHTML = "<option value='cornflowerblue'>Cornflower Blue</option><option value='darkslategrey'>Dark Slate Grey</option><option value='gold'>Gold</option>"; 
 		
-	} else if(tSelection === "heart js") {
+	}
+	if(tSelection === "heart js") {
 		// If the user selects "Theme - I ♥ JS" then the color menu should only display "Tomato," "Steel Blue," and "Dim Grey."
 		colorSelector.innerHTML = '<label for="color">Color:</label><select id="color"><option value="tomato">Tomato</option><option value="steelblue">Steel Blue</option><option value="dimgrey">Dim Grey</option></select>';
 		
@@ -83,13 +85,16 @@ document.querySelector(".activities").addEventListener("change", function(){
 	if(framework.checked == true) {
 		express.disabled = true;
 		expressLbl.style.color = "grey";
-	} else if(express.checked == true) {
+	}
+	if(express.checked == true) {
 		framework.disabled=  true;
 		frameworkLbl.style.color = "grey";
-	} else if(libs.checked == true) {
+	} 
+	if(libs.checked == true) {
 		node.disabled = true;
 		nodeLbl.style.color = "grey";
-	} else if(node.checked == true) {
+	}
+	if(node.checked == true) {
 		libs.disabled = true;
 		libsLbl.style.color = "grey";
 	} 
@@ -98,13 +103,16 @@ document.querySelector(".activities").addEventListener("change", function(){
 	if(framework.checked == false) {
 		express.disabled = false;
 		expressLbl.style.color = "black";
-	} else if(express.checked == false) {
+	}
+	if(express.checked == false) {
 		framework.disabled = false;
 		frameworkLbl.style.color = "black";
-	} else if(libs.checked == false) {
+	}
+	if(libs.checked == false) {
 		node.disabled = false;
 		nodeLbl.style.color = "black";
-	} else if(node.checked == false) {
+	}
+	if(node.checked == false) {
 		libs.disabled = false;
 		libsLbl.style.color = "black";
 	} 
@@ -112,10 +120,11 @@ document.querySelector(".activities").addEventListener("change", function(){
 	// Calculate running total of price of events selected
 	var mainPrice = 200;
 	var otherPrice = 100;
-	var totalPrice;
+	var totalPrice = 0;
 	var totalLabel;
+	//totalLabel = document.querySelector('label')
 	
-	if(!totalLabel){
+	if(!document.getElementById('label')){
 		totalLabel = document.createElement('label');
 		activities.appendChild(totalLabel);
 	}
