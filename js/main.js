@@ -5,15 +5,23 @@
 
 
 // Hold DOM elements for easy access
-var pageBody = document.querySelector('body');
 var jobRoleSelect = document.getElementById('title');
 var activities = document.querySelector(".activities");
 
 
 // Set focus on the first text field
-window.onload = function() {
-  document.getElementById("name").focus();
-};
+document.getElementById("name").focus();
+
+//Make sure that tshirt colors aren't available until tshirt design is chosen
+var colorSelector = document.getElementById('colors-js-puns');
+colorSelector.innerHTML = "";
+
+//make sure that bitcoin and paypal payment options aren't available until selected
+var paypal = document.getElementById('paypal');
+paypal.innerHTML = "";
+var bitcoin = document.getElementById('bitcoin');
+bitcoin.innerHTML = "";
+
 
 
 // Reveal a text field when the "Other" option is selected from the "Job Role" drop down menu
@@ -47,7 +55,7 @@ document.getElementById("design").addEventListener("change", function(){
 	var tSelection = tShirtMenu.value;
 	var colorSelector = document.getElementById('colors-js-puns');
 	
-	if(tSelection === "selectTheme") {
+	if(tSelection) {
 		colorSelector.innerHTML = "";
 		
 	}
@@ -82,15 +90,15 @@ document.querySelector(".activities").addEventListener("change", function(){
 	
 	
 	// If the user selects a workshop, don't allow selection of a workshop at the same date and time -- you should disable the checkbox and visually indicate that the workshop in the competing time slot isn't available.
-	if(framework.checked == true) {
+	if(framework.checked) {
 		express.disabled = true;
 		expressLbl.style.color = "grey";
 	}
-	if(express.checked == true) {
+	if(express.checked) {
 		framework.disabled=  true;
 		frameworkLbl.style.color = "grey";
 	} 
-	if(libs.checked == true) {
+	if(libs.checked) {
 		node.disabled = true;
 		nodeLbl.style.color = "grey";
 	}
@@ -100,19 +108,19 @@ document.querySelector(".activities").addEventListener("change", function(){
 	} 
 
 	// When a user unchecks an activity, make sure that competing activities (if there are any) are no longer disabled.
-	if(framework.checked == false) {
+	if(!framework.checked) {
 		express.disabled = false;
 		expressLbl.style.color = "black";
 	}
-	if(express.checked == false) {
+	if(!express.checked) {
 		framework.disabled = false;
 		frameworkLbl.style.color = "black";
 	}
-	if(libs.checked == false) {
+	if(!libs.checked) {
 		node.disabled = false;
 		nodeLbl.style.color = "black";
 	}
-	if(node.checked == false) {
+	if(!node.checked) {
 		libs.disabled = false;
 		libsLbl.style.color = "black";
 	} 
@@ -121,34 +129,31 @@ document.querySelector(".activities").addEventListener("change", function(){
 	var mainPrice = 200;
 	var otherPrice = 100;
 	var totalPrice = 0;
-	var totalLabel;
-	//totalLabel = document.querySelector('label')
-	
-	if(!document.getElementById('label')){
-		totalLabel = document.createElement('label');
-		activities.appendChild(totalLabel);
-	}
 
-	if(main.checked == true){
+	if(main.checked){
 		totalPrice += mainPrice;
 	}
-	if(framework.checked == true || express.checked == true) {
+	if(framework.checked || express.checked) {
 		totalPrice += otherPrice;
 	} 
-	if(libs.checked == true || node.checked == true) {
+	if(libs.checked || node.checked) {
 		totalPrice += otherPrice;
 	} 
-	if(build.checked == true) {
+	if(build.checked) {
 		totalPrice += otherPrice;
 	} 
-	if(npm.checked == true) {
-		totalPrice += otherprice;
+	if(npm.checked) {
+		totalPrice += otherPrice;
 	}
 
 	var totalNumber = totalPrice.toString();
 	var totalText = "Total is $" + totalNumber;
+	document.getElementById('total').innerHTML = totalText;
 
-	totalLabel.innerHTML = totalText;
+	if(totalPrice === 0){
+		document.getElementById('total').innerHTML = "";
+	}
+	
 });
 	
 	
@@ -179,11 +184,12 @@ document.getElementById("payment options").addEventListener("change", function()
 
 // Form validation. Display error messages and don't let the user submit the form if any of these validation errors exist:
 document.querySelector("button").addEventListener("click", function(e) {
-	e.preventDefault();
+	
 	// Name field can't be empty
     var nameInput = document.getElementById("name");
     var nameLabel = document.getElementById("nameLabel");
 	if(nameInput.value.length == 0) {
+		e.preventDefault();
         nameLabel.innerHTML = "Name: (please provide name)";
         nameLabel.style.color = "red";
     } else {
@@ -201,7 +207,8 @@ document.querySelector("button").addEventListener("click", function(e) {
     var emailLabel = document.getElementById("emailLabel");
 
 	if(!validateEmail(emailInput.value)) {
-        emailLabel.innerHTML = "Email: (please provide a valid email address)";
+		e.preventDefault();
+		emailLabel.innerHTML = "Email: (please provide a valid email address)";
         emailLabel.style.color = "red";
     } else {
     	emailLabel.innerHTML = "Email:";
@@ -213,12 +220,13 @@ document.querySelector("button").addEventListener("click", function(e) {
 	var ccNum = document.getElementById("cc-num");
     var ccNumLbl = document.getElementById("cc-numLbl");
 
-    // takes the form field value and returns true on valid number
-	function valid_credit_card(value) {
-  	// accept only digits, dashes or spaces
+
+// takes the form field value and returns true on valid number
+function valid_credit_card(value) {
+  // accept only digits, dashes or spaces
 	if (/[^0-9-\s]+/.test(value)) return false;
 
-	// The Luhn Algorithm.  
+	// The Luhn Algorithm. It's so pretty.
 	var nCheck = 0, nDigit = 0, bEven = false;
 	value = value.replace(/\D/g, "");
 
@@ -235,11 +243,12 @@ document.querySelector("button").addEventListener("click", function(e) {
 	}
 
 	return (nCheck % 10) == 0;
-	}
+}
 
 
 	if(!valid_credit_card(ccNum.input)) {
         ccNumLbl.style.color = "red";
+        e.preventDefault();
     } else {
         ccNumLbl.style.color = "black";
     }
@@ -249,6 +258,8 @@ document.querySelector("button").addEventListener("click", function(e) {
     var zipLbl = document.getElementById("zipLbl");
 	if(zip.value.length == 0) {
         zipLbl.style.color = "red";
+        e.preventDefault();
+
     } else {
         zipLbl.style.color = "black";
     }
@@ -256,8 +267,10 @@ document.querySelector("button").addEventListener("click", function(e) {
     //check there's a cvv
 	var cvv = document.getElementById("cvv");
     var cvvLbl = document.getElementById("cvvLbl");
-	if(cvv.value.length == 0) {
+	if(cvv.value.length === 0) {
         cvvLbl.style.color = "red";
+        e.preventDefault();
+
     } else {
         cvvLbl.style.color = "black";
     }
@@ -275,6 +288,7 @@ document.querySelector("button").addEventListener("click", function(e) {
     }
 
     if(counter < 1){
+    	e.preventDefault();
     	activityReminder.innerHTML = "Please select an Activity";
     	activityReminder.style.color = "red";
     	lineBreak.innerHTML = "<br>";
@@ -287,14 +301,12 @@ document.querySelector("button").addEventListener("click", function(e) {
     var tShirtMenu = document.getElementById('design');
     var tSelection = tShirtMenu.value;
     var tshirtReminder = document.getElementById("tshirtReminder");
-    var tBreak = document.getElementById("tBreak");
 
 	if(tSelection === "selectTheme"){
     	tshirtReminder.innerHTML = "Don't forget to choose a tshirt";
     	tshirtReminder.style.color = "red";
-    	tBreak.innerHTML = "<br>";
+    	e.preventDefault();
     } else if (tSelection === "js puns" || tSelection === "heart js") {
     	tshirtReminder.innerHTML = "";
-    	tBreak.innerHTML = "";
     }
 });

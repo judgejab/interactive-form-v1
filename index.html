@@ -59,7 +59,16 @@
           </select>
         </div>
 
-        <div id="colors-js-puns" class="">
+        <div id="colors-js-puns">
+          <label for="color">Color:</label>
+          <select id="color">
+            <option value="cornflowerblue">Cornflower Blue</option>
+            <option value="darkslategrey">Dark Slate Grey</option>
+            <option value="gold">Gold</option>
+            <option value="tomato">Tomato</option>
+            <option value="steelblue">Steel Blue</option>
+            <option value="dimgrey">Dim Grey</option>
+        </select>
         </div>                
       </fieldset>
 
@@ -74,6 +83,7 @@
         <label id="nodeLabel"><input type="checkbox" name="node" id="node" class="activity"> Node.js Workshop — Tuesday 1pm-4pm, $100</label>          
         <label><input type="checkbox" name="build-tools" id="build" class="activity"> Build tools Workshop — Wednesday 9am-12pm, $100</label>
         <label><input type="checkbox" name="npm" id="npm" class="activity"> npm Workshop — Wednesday 1pm-4pm, $100</label>
+        <label id='total'></label>
       </fieldset>
 
       <fieldset id="payment options">
@@ -126,7 +136,13 @@
             <option value="2019">2019</option>
             <option value="2020">2020</option>                      
           </select>                                
-        </div>  
+        </div> 
+        <div id="paypal">
+          <p>If you selected the PayPal option we'll take you to Paypal's site to set up your billing information, when you click 'Register' below.</p>
+        </div>
+        <div id="bitcoin">
+          <p>If you selected the Bitcoin option we'll take you to the Coinbase site to set up your billing information. Due to the nature of exchanging Bitcoin, all Bitcoin transactions will be final.</p>
+        </div> 
       </fieldset>        
       <button type="submit">Register</button>
       
