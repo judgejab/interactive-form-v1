@@ -222,6 +222,7 @@ document.querySelector("button").addEventListener("click", function(e) {
 
 
 // takes the form field value and returns true on valid number
+//algorithm found here: https://gist.github.com/DiegoSalazar/4075533
 function valid_credit_card(value) {
   // accept only digits, dashes or spaces
 	if (/[^0-9-\s]+/.test(value)) return false;
