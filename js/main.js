@@ -1,12 +1,12 @@
 // TASK: Add interactivity to form
 
 
-'use strict';
+"use strict";
 
 
 // Hold DOM elements for easy access
 var jobRoleSelect = document.getElementById('title');
-var activities = document.querySelector(".activities");
+
 
 
 // Set focus on the first text field
@@ -102,7 +102,7 @@ document.querySelector(".activities").addEventListener("change", function(){
 		node.disabled = true;
 		nodeLbl.style.color = "grey";
 	}
-	if(node.checked == true) {
+	if(node.checked) {
 		libs.disabled = true;
 		libsLbl.style.color = "grey";
 	} 
@@ -188,7 +188,7 @@ document.querySelector("button").addEventListener("click", function(e) {
 	// Name field can't be empty
     var nameInput = document.getElementById("name");
     var nameLabel = document.getElementById("nameLabel");
-	if(nameInput.value.length == 0) {
+	if(nameInput.value.length === 0) {
 		e.preventDefault();
         nameLabel.innerHTML = "Name: (please provide name)";
         nameLabel.style.color = "red";
@@ -243,7 +243,7 @@ function valid_credit_card(value) {
 		bEven = !bEven;
 	}
 
-	return (nCheck % 10) == 0;
+	return (nCheck % 10) === 0;
 }
 
 
@@ -257,7 +257,7 @@ function valid_credit_card(value) {
     //check there's a zip code
 	var zip = document.getElementById("zip");
     var zipLbl = document.getElementById("zipLbl");
-	if(zip.value.length == 0) {
+	if(zip.value.length === 0) {
         zipLbl.style.color = "red";
         e.preventDefault();
 
